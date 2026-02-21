@@ -1,163 +1,224 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rang Igénylés</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbital Bar – Explore the Sweet Universe</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: black;
-            font-family: Arial, sans-serif;
-            color: white;
-            text-align: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .top-image {
-            width: 55%;
-            margin-top: 40px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .form-box {
-            width: 55%;
-            margin: 50px auto;
-            background: #111;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 25px #00a6ff;
-        }
+body{
+    font-family:'Poppins',sans-serif;
+    color:white;
+    background:black;
+    overflow-x:hidden;
+}
 
-        select, textarea, input {
-            width: 90%;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 8px;
-            border: none;
-            font-size: 16px;
-        }
+/* === GALAXY BACKGROUND === */
 
-        button {
-            width: 90%;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            background: #009cff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+.galaxy{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(circle at 20% 30%, #3a1c71, transparent 40%),
+        radial-gradient(circle at 80% 70%, #1e3c72, transparent 40%),
+        radial-gradient(circle at 50% 50%, #000428, #000000 80%);
+    z-index:-3;
+}
 
-        button:hover {
-            background: #007acc;
-        }
+.stars{
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: moveStars 200s linear infinite;
+    opacity:0.5;
+    z-index:-2;
+}
 
-        .bottom-img {
-            width: 40%;
-            margin-top: 40px;
-        }
+@keyframes moveStars{
+    from{ transform:translate(0,0);}
+    to{ transform:translate(-800px,-800px);}
+}
 
-        .join-text {
-            font-size: 22px;
-            margin-top: 20px;
-        }
+/* === HERO SECTION === */
 
-        .join-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 15px 30px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 10px;
-            text-decoration: none;
-            background: #00a6ff;
-            color: white;
-            box-shadow: 0 0 20px #00aaff;
-        }
+.hero{
+    text-align:center;
+    padding:140px 20px 100px 20px;
+    position:relative;
+}
 
-        .join-btn:hover {
-            background: #0088cc;
-        }
+.hero img{
+    width:90%;
+    max-width:600px;
+    border-radius:30px;
+    box-shadow:0 0 80px rgba(255,215,0,0.6);
+    animation: float 6s ease-in-out infinite;
+}
 
-        .rank-info {
-            width: 55%;
-            margin: 50px auto;
-            background: #111;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 25px #00a6ff;
-            text-align: left;
-            line-height: 1.6;
-        }
+@keyframes float{
+    0%{ transform:translateY(0);}
+    50%{ transform:translateY(-15px);}
+    100%{ transform:translateY(0);}
+}
 
-        .rank-info h2 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:4.5rem;
+    margin-top:40px;
+    background:linear-gradient(90deg,#ffd700,#ffffff,#ffd700);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 40px rgba(255,215,0,0.8);
+    position:relative;
+}
 
-        .rank-info b {
-            color: #00aaff;
-        }
-    </style>
+/* Orbit Ring Around Title */
+
+h1::after{
+    content:"";
+    position:absolute;
+    width:120%;
+    height:120%;
+    border:3px solid rgba(255,215,0,0.6);
+    border-radius:50%;
+    top:-10%;
+    left:-10%;
+    animation: rotateOrbit 12s linear infinite;
+}
+
+@keyframes rotateOrbit{
+    from{ transform:rotate(0deg);}
+    to{ transform:rotate(360deg);}
+}
+
+/* === CONTENT SECTIONS === */
+
+.section{
+    max-width:1000px;
+    margin:160px auto;
+    padding:60px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(12px);
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(0,0,0,0.9);
+    opacity:0;
+    transform:translateY(100px);
+    transition:all 1.2s ease;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.section h2{
+    font-family:'Orbitron',sans-serif;
+    margin-bottom:30px;
+    color:#ffd700;
+    font-size:2.2rem;
+}
+
+.section p{
+    font-size:1.15rem;
+    line-height:1.9;
+}
+
+/* === FOOTER === */
+
+footer{
+    text-align:center;
+    padding:100px 0 60px 0;
+    opacity:0.6;
+}
+
+/* === PARALLAX SCROLL EFFECT === */
+
+.parallax{
+    position:relative;
+    transform:translateZ(0);
+    will-change:transform;
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- Felső kép -->
-    <img src="tw1zzandv1bzrNormal.png" class="top-image">
+<div class="galaxy"></div>
+<div class="stars"></div>
 
-    <!-- Rang igénylés form -->
-    <div class="form-box">
-        <h2>Rang Igénylés</h2>
+<div class="hero parallax">
+    <img src="Orbital bar idea.png" alt="Orbital Bar">
+    <h1>Orbital Bar</h1>
+</div>
 
-        <form action="https://formsubmit.co/minecraftsolyom@gmail.com" method="POST">
+<div class="section">
+    <h2>Cosmic Chocolate Experience</h2>
+    <p>
+        Orbital Bar combines smooth milk chocolate, airy nougat,
+        and flowing caramel into one luxurious space-inspired creation.
+    </p>
+</div>
 
-            <input type="text" name="Discord név" placeholder="Add meg a Discord neved..." required>
+<div class="section">
+    <h2>Flavor Identity</h2>
+    <p>
+        Creamy coating, soft whipped center,
+        and silky caramel core — perfectly balanced sweetness
+        crafted for a premium chocolate experience.
+    </p>
+</div>
 
-            <select name="Kért rang" required>
-                <option value="" disabled selected>Válassz rangot...</option>
-                <option>⭐ VIP</option>
-                <option>💎 VIP+</option>
-                <option>🛡️ Moderátor</option>
-                <option>🛠️ Szerver Fejlesztő</option>
-            </select>
+<div class="section">
+    <h2>Brand Vision</h2>
+    <p>
+        Inspired by galaxies and planetary motion,
+        Orbital Bar represents a journey beyond ordinary chocolate.
+        Bold. Modern. Cosmic.
+    </p>
+</div>
 
-            <textarea name="Miért szeretnéd a rangot?" rows="4" placeholder="Miért szeretnéd ezt a rangot?" required></textarea>
+<footer>
+    © 2026 Orbital Bar – Explore the Sweet Universe
+</footer>
 
-            <textarea name="Mit profitál a szerver?" rows="4" placeholder="Miben lenne hasznos a jelenléted?" required></textarea>
+<script>
 
-            <button type="submit">Rang Igénylés</button>
+/* Scroll Reveal */
 
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Új rang igénylés érkezett!">
-        </form>
-    </div>
+const sections = document.querySelectorAll(".section");
 
-    <!-- Rang ismertető blokk -->
-    <div class="rank-info">
-        <h2>Rangok Leírása</h2>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{ threshold:0.25 });
 
-        <p><b>🛠️ Szerver Fejlesztő</b> – A szerver egyik legfontosabb technikai szerepe. A fejlesztő felel a scriptelésért, hibajavításért, optimalizálásért és az új funkciók bevezetéséért. A képen is látható ikon arról árulkodik, hogy ez a rang magasabb szintű szakértelmet és megbízhatóságot igényel. A szerver jövőjét befolyásolja minden munkája.</p>
+sections.forEach(section => observer.observe(section));
 
-        <p><b>🛡️ Moderátor</b> – A közösség biztonsága és kényelme a feladata. Ő végzi a felhasználók segítését, a szabályszegők kezelését és a szerver mindennapi rendjének fenntartását. A moderátor ikonja a stabilitást és védelmet jelképezi.</p>
+/* Parallax Effect */
 
-        <p><b>⭐ VIP</b> – Támogatói rang, amely kisebb extra funkciókat és kényelmi előnyöket biztosít. A VIP tagok hozzájárulnak a szerver fenntartásához és fejlesztéséhez, ezzel közösségünk fontos tagjai.</p>
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    document.querySelector(".stars").style.transform =
+        "translateY(" + scrollY * 0.2 + "px)";
+    document.querySelector(".galaxy").style.transform =
+        "translateY(" + scrollY * 0.1 + "px)";
+});
 
-        <p><b>💎 VIP+</b> – A VIP magasabb szintje, amely több funkciót, nagyobb kényelmet és extra lehetőségeket kínál. Az ikon a különlegesebb támogatói státuszt szimbolizálja, amely nagyban segíti a szerver fejlődését. (Az emoji változatlanul maradt!)</p>
-
-        <br>
-
-        <p>Ha úgy érzed, hogy megfelelően tudod képviselni a rangod és hasznos tagja lennél a csapatnak, bátran töltsd ki a fenti űrlapot!</p>
-    </div>
-
-    <!-- Alsó kép -->
-    <img src="tw1zzandv1bzrNormal.png" class="bottom-img">
-
-    <p class="join-text">Nem csatlakoztál még?</p>
-
-    <a class="join-btn" href="https://discord.gg/wufvEM3T" target="_blank">Csatlakozz most!</a>
+</script>
 
 </body>
 </html>
